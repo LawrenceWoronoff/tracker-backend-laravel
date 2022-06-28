@@ -14,9 +14,9 @@ use App\Http\Controllers\HomeController;
 |
 */
 
-Route::get('/', function () {
+Route::get('/', function () {   // Inital 
     return view('welcome');
 });
 
-Route::get('/browsing-history', 'App\Http\Controllers\HomeController@showhistory');
-Route::get('/export', 'App\Http\Controllers\HomeController@export')->name('export');
+Route::get('/browsing-history', 'App\Http\Controllers\HomeController@showhistory'); // Show the browsing history
+Route::get('/export', 'App\Http\Controllers\HomeController@export')->name('export'); // Excel export function

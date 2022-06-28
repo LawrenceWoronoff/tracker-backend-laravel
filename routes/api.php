@@ -18,5 +18,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::post('insertTab', 'App\Http\Controllers\APIController@insertTab');
-Route::post('closeTab', 'App\Http\Controllers\APIController@closeTab');
+Route::post('insertTab', 'App\Http\Controllers\APIController@insertTab');   // Inserting API when user open new tab
+Route::post('closeTab', 'App\Http\Controllers\APIController@closeTab');     // Set Close Time for calculating duration when user close the tab.

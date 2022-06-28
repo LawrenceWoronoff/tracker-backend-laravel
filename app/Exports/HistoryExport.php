@@ -8,7 +8,7 @@ use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\FromQuery;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 
-class HistoryExport implements FromCollection, WithHeadings
+class HistoryExport implements FromCollection, WithHeadings // Excel Export Module
 {
     // use Exportable;
 
@@ -27,13 +27,13 @@ class HistoryExport implements FromCollection, WithHeadings
     */
     public function collection()
     {
-        // /return Tab::get(['title', 'tabUrl', 'created_at', 'deleted_at']);
         $data = Tab::withTrashed()->get(['id', 'title', 'tabUrl', 'created_at', 'deleted_at']);
         $index = 0;
         foreach($data as $row){
             $index++;
             $row['id'] = $index;
             
+            // Format duration with X (days) X (hrs) X(mins) X(secs)
             $duration = strtotime($row['deleted_at']) - strtotime($row['created_at']);
             $day = intval($duration / (60 * 60 * 24));
             $duration %= (60 * 60 * 24);
@@ -55,7 +55,7 @@ class HistoryExport implements FromCollection, WithHeadings
         return $data;
     }
 
-    public function headings(): array
+    public function headings(): array   // Set Heading for Excel
     {
         return ["No", "Title", "URL", "Open time", "Duration"];
     }
